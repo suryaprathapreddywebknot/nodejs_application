@@ -1,0 +1,30 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 1rem; */
+    /* border: 1px solid black; */
+    height: 4rem;
+    padding-left:1rem ;
+    background: #242b4d;
+}
+.navigation{
+    height: 4rem;
+    /* border: 1px solid black; */
+    /* padding: ; */
+
+}
+.navigation button{
+    height: 100%;
+    border: none;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 1rem;
+    padding: 1rem;
+    letter-spacing: 1px;
+}
+.logo h3{
+    color: #fff;
+}
