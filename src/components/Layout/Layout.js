@@ -11,7 +11,9 @@ import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurned
 import QuestionMarkOutlinedIcon from '@mui/icons-material/QuestionMarkOutlined';
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import { Outlet } from "react-router-dom";
+import { useSelector } from 'react-redux';
 function Layout(props) {
+  const currentUser=useSelector(state=>state.auth.currentUser)
   return (
     <div className={styles.layout}>
       <div className={styles.layoutNavbar}>
@@ -34,10 +36,10 @@ function Layout(props) {
 
         <div className={styles.layoutMain}><Outlet/></div>
         <div className={styles.layoutAside}>
-          <h2>welcome,<br></br> K S SURYA PRATHAP REDDY</h2>
-          <h2>ID xyz</h2>
+          <h2>welcome,<br></br>{currentUser?.name}</h2>
+          <h2>{currentUser?.id}</h2>
           <p>Your Manager:</p>
-          <p>Krishnan N R</p>
+          <p>{currentUser?.managerName?currentUser?.managerName:'-'}</p>
         </div>
       </div>
     </div>
