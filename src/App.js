@@ -10,7 +10,7 @@ import { Navigate } from 'react-router';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-
+import Attendence from '../src/pages/Attendence/Attendence'
 function App() {
   const [isLoggedIn,setIsloggedIn]=useState(false)
   const user=useSelector(state=>state.auth)
@@ -34,7 +34,7 @@ function App() {
     <Route path='/signup' element={<Signup/>}></Route>
     {isLoggedIn && <Route element={<Layout/>}>
         <Route path='/dashboard' element={<h1>This is dashboard</h1>}></Route>
-        <Route path='/attendence' element={<h1>This is attendence</h1>}></Route>
+        <Route path='/attendence' element={<Attendence></Attendence>}></Route>
         <Route path='/documents' element={<Documents></Documents>}></Route>
         <Route path='/help' element={<h1>This is help</h1>}></Route>
       </Route>}

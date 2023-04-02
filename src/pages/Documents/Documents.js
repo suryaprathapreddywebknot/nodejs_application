@@ -84,15 +84,20 @@ function Documents() {
       <h1 className={styles.header}>Documents</h1>
       <div className={styles.documentsTable}>
         <table>
+          <thead>
           <tr>
             <th>Date</th>
             <th>Type</th>
             <th>Description</th>
             <th>Attachments</th>
           </tr>
+          </thead>
+         <tbody>
+
+         
           {userDocuments.documents.map((ele) => {
             return (
-              <tr>
+              <tr key={ele.id}>
                 <td>{`${new Date(ele.createdDate).getDate()}/${
                   new Date(ele.createdDate).getMonth() + 1
                 }/${new Date(ele.createdDate).getFullYear()}`}</td>
@@ -112,6 +117,7 @@ function Documents() {
               </tr>
             );
           })}
+          </tbody>
         </table>
       </div>
       <form onSubmit={documentSubmitHandler}>
