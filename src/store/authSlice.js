@@ -4,7 +4,7 @@ import { api } from "../CONFIG/config";
 
 const authSlice = createSlice({
   name: "auth",
-  initialState: { token: "", currentUser: [] },
+  initialState: { token: "", currentUser: [] ,allUsers:[]},
   reducers: {
     login(state, actions) {
       state.token = actions.payload.token;
@@ -14,6 +14,9 @@ const authSlice = createSlice({
       state.token = "";
       state.currentUser = [];
     },
+    setUsers(state,actions){
+      state.allUsers=actions.payload.allusers
+    }
   },
 });
 
@@ -38,11 +41,30 @@ export const loginRequest = function (credentials) {
     } catch (error) {
         alert(error.message)
     }
-    
 
-    
-    
   };
 };
+
+export const fetchALlEmployees=function(token){
+  return async dispatch=>{
+    try {
+      const response=await fetch(`${api.url}/employees`,{
+        method:'GET',
+        headers: { "content-type": "application/json" ,
+          "Authorization":`Bearer ${token}`}
+      })
+      console.log(response)
+
+      if(response.ok){
+        const data =await response.json()
+        console.log(data)
+        dispatch(authSliceActions.setUsers({allusers:data.data}))
+      }
+    } catch (error) {
+      
+    }
+  }
+
+}
 
 export default authSlice;

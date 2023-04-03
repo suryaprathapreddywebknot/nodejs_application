@@ -30,8 +30,6 @@ export const leaveRequest=function(leaveData,token){
               console.log(response)
               if (response.ok) {
                 const data = await response.json();
-                console.log(data)
-                if(data.success)alert('Leave request submitted successfully')
                 // dispatch(leavesSliceActions.setLeaves({leaves:data.data}));
               }
         } catch (error) {
@@ -53,14 +51,12 @@ export const fetchEmpLeaves=function(id,token){
 
         if(response.ok){
             const data=await response.json()
-            if(data.success){alert('leaves fetched successfully')}
-            console.log(data)
             dispatch(leavesSliceActions.setEmpLeaves({leaves:data.data}));
         }
     }
 }
 
-export const fetchAllEmpLeaves=function(id,token){
+export const fetchAllEmpLeaves=function(token){
     return async dispatch=>{
         const response=await fetch(`${api.url}/leaves`,{
             method:'GET',
@@ -70,9 +66,28 @@ export const fetchAllEmpLeaves=function(id,token){
 
         if(response.ok){
             const data=await response.json()
-            if(data.success){alert('leaves fetched successfully')}
             console.log(data)
-            dispatch(leavesSliceActions.setAllLeaves({leaves:data.data}));
+            dispatch(leavesSliceActions.setAllLeaves({allLeaves:data.data}));
+        }
+    }
+}
+
+export const updateLeave=function(id,token){
+    return async dispatch=>{
+        const response=await fetch(`${api.url}/leaves/update`,{
+            method:'POST',
+            body:JSON.stringify({
+                "id":id,
+                "status":'approved'
+            }),
+            headers: { "content-type": "application/json" ,
+            "Authorization":`Bearer ${token}`},
+        })
+        if(response.ok){
+            const data=await response.json()
+            if(data.success){
+                alert('leave approved :)')
+            }
         }
     }
 }
