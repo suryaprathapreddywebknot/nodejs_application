@@ -37,7 +37,7 @@ function Dashboard() {
         }):''}
       </div>
       <div className={styles.card}>
-        <h2>Leaves</h2>
+        {/* <h2>Leaves</h2> */}
       </div>
     </div>
   );
